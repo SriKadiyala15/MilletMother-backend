@@ -20,7 +20,5 @@ COPY src ./src
 # Build the application
 RUN ./mvnw clean package -DskipTests && cp target/*SNAPSHOT.jar app.jar
 
-
 # Run the jar
 CMD ["java", "-jar", "app.jar"]
-
