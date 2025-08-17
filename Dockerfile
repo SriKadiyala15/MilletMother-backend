@@ -1,9 +1,21 @@
-FROM eclipse-temurin:17-jdk-alpine
+# Use OpenJDK as base image
+FROM openjdk:17-jdk-slim
 
+# Set working directory
 WORKDIR /app
 
-COPY target/*.jar app.jar
+# Copy Maven build file and wrapper
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
 
-EXPOSE 8080
+# Download dependencies (caching layer)
+RUN ./mvnw dependency:go-offline -B
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Copy source code
+COPY src ./src
+
+# Build the application
+RUN ./mvnw clean package -DskipTests
+
+# Run the jar
+CMD ["java", "-jar", "target/*.jar"]
