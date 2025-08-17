@@ -4,14 +4,17 @@ FROM openjdk:17-jdk-slim
 # Set working directory
 WORKDIR /app
 
-# Copy Maven build file and wrapper
+# Copy Maven wrapper and pom.xml first
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
+
+# Make mvnw executable
+RUN chmod +x mvnw
 
 # Download dependencies (caching layer)
 RUN ./mvnw dependency:go-offline -B
 
-# Copy source code
+# Copy the source code
 COPY src ./src
 
 # Build the application
