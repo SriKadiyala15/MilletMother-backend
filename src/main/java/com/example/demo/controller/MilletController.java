@@ -18,7 +18,14 @@ public class MilletController {
     }
 
     @GetMapping
-    public List<Millet> getAllMillets() {
-        return milletRepository.findAll();
+    public ResponseEntity<?> getAllMillets() {
+        try {
+            List<Millet> millets = milletRepository.findAll();
+            return ResponseEntity.ok(millets);
+        }
+        catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error fetching millets: " + e.getMessage());
+        }
     }
 }
