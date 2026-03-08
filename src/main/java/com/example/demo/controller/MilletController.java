@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Millet;
 import com.example.demo.repository.MilletRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +24,7 @@ public class MilletController {
         try {
             List<Millet> millets = milletRepository.findAll();
             return ResponseEntity.ok(millets);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Error fetching millets: " + e.getMessage());
         }
