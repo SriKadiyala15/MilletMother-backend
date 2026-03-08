@@ -12,18 +12,8 @@ public class Millet {
     private String description;
     private String imageUrl;
 
-    // Default constructor
     public Millet() {}
 
-    // Parameterized constructor
-    public Millet(String id, String name, String description, String imageUrl) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.imageUrl = imageUrl;
-    }
-
-    // Getter and Setter for id
     public String getId() {
         return id;
     }
@@ -32,7 +22,6 @@ public class Millet {
         this.id = id;
     }
 
-    // Getter and Setter for name
     public String getName() {
         return name;
     }
@@ -41,7 +30,6 @@ public class Millet {
         this.name = name;
     }
 
-    // Getter and Setter for description
     public String getDescription() {
         return description;
     }
@@ -50,7 +38,6 @@ public class Millet {
         this.description = description;
     }
 
-    // Getter and Setter for imageUrl
     public String getImageUrl() {
         return imageUrl;
     }
